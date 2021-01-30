@@ -16,7 +16,7 @@ def browser(request):
     print('\nstart Chrome browser...')
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     options.add_experimental_option('w3c', False)
-    browser = webdriver.Chrome(options=options, executable_path=r'E:\Leylas document\PythonWork\chromedriver.exe')    
+    browser = webdriver.Chrome(options=options)
     yield browser
     # закрытие браузера после работы
     print("\nquit browser..")

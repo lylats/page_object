@@ -1,9 +1,9 @@
 import pytest
 import time
-from pages.product_page import ProductPage
-from pages.login_page import LoginPage
-from pages.locators import Urls
-from pages.basket_page import BasketPage
+from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
+from .pages.locators import Urls
+from .pages.basket_page import BasketPage
 
 pytest_params = [pytest.param(i, marks=pytest.mark.xfail(i == 7, reason='')) for i in range(10)]
 
@@ -18,7 +18,7 @@ def test_guest_can_add_product_to_basket(browser, promo_offer):
     product_page.should_be_product_name_and_price()
     product_page.add_product_to_basket()
     product_page.solve_quiz_and_get_code()
-    product_page.should_be_alert_that_product_add_to_basket()
+    product_page.should_be_message_that_product_add_to_basket()
     product_page.is_product_price_the_same()
     product_page.is_product_name_the_same()
 
@@ -105,6 +105,6 @@ class TestUserAddToBasketFromProductPage:
 
         product_page.should_be_product_name_and_price()
         product_page.add_product_to_basket()
-        product_page.should_be_alert_that_product_add_to_basket()
+        product_page.should_be_message_that_product_add_to_basket()
         product_page.is_product_price_the_same()
         product_page.is_product_name_the_same()
