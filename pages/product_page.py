@@ -8,11 +8,20 @@ class ProductPage(BasePage):
         basket_button.click()
 
     def should_be_product_name_and_price(self):
-        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 
-        print(product_name)
-        print(product_price)
+        if not self.is_element_present(*ProductPageLocators.PRODUCT_NAME):
+            assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), \
+                "'Name empty'"
+        else:
+            product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+            print(product_name)
+
+        if not self.is_element_present(*ProductPageLocators.PRODUCT_PRICE):
+            assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), \
+                "'Price empty'"
+        else:
+            product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+            print(product_price)
 
     def should_be_message_that_product_add_to_basket(self):
         assert self.is_element_present(*ProductPageLocators.MESSAGE_THAT_PRODUCT_ADD_TO_BASKET)
